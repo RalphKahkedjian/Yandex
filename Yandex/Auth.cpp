@@ -15,5 +15,5 @@ Auth::Auth(string n, string e, string p, int a)
         exit(0);
     }
 
-    cout << "\n Welcome to Yandex Taxi! \n" << endl;
+    cout << "\nWelcome to Yandex Taxi! \n" << endl;
 }
