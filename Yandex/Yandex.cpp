@@ -1,20 +1,47 @@
-// Yandex.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <set>
+#include <string>
+#include <Windows.h>
+#include "Auth.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+bool isLoading = false;
+
+void ValidatingUser() {
+    cout << "\nPlease be patient...\n";
+    cout << "Did you know Yandex Taxi is global? Yes, we are located in Armenia, Georgia, Russia, Kazakhstan...\nVisit Our Website for more.\n";
+    Sleep(5000);
+    isLoading = true;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main() {
+    set<string> emailSet;
+    string name, email, password;
+    int age;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    cout << "Enter your name: ";
+    getline(cin, name);
+
+    cout << "Enter your email: ";
+    getline(cin, email);
+
+    cout << "Enter your password: ";
+    getline(cin, password);
+
+    cout << "Enter your age: ";
+    cin >> age;
+
+    ValidatingUser();
+
+    if (isLoading) {
+        Auth auth(name, email, password, age);
+        Sleep(1500);
+        system("cls");
+    }
+    else {
+        cout << "An error occurred due to maintenance. Please try again later." << endl;
+    }
+
+    return 0;
+}
