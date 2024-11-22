@@ -43,11 +43,14 @@ void WaitOrCancel() {
     int pay;
     cout << "Pay " << price << " €\n";
     cin >> pay;
-    if (pay == price) {
-        cout << "\nThank you for riding with us, Enjoy your day!\n";
+    if (pay > price * 2) {
+        cout << "\nWow! Thank you for your huge tips. Enjoy your day\n";
     }
     else if (pay > price) {
-        cout << "\nThank you for riding with us and for your additional tips !\n";
+        cout << "\nThank you for riding with us and for your additional tips!\n";
+    }
+    else if (pay == price) {
+        cout << "\nThank you for riding with us, Enjoy your day!\n";
     }
     else {
         cout << "See you in jail\n";
