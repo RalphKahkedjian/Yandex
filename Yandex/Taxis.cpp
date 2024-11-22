@@ -1,6 +1,7 @@
 #include "Taxis.h"
 #include <iostream>
 #include <vector>
+#include <map>
 #include <cstdlib>
 #include <ctime>
 #include <Windows.h>
@@ -19,10 +20,10 @@ void WaitOrCancel() {
     if (choice == 'q' || choice == 'Q') {
         exit(0);
     }
-    const string didYouKnow[] = {
-     "Yandex Taxi is one of the leading ride-hailing services in Russia, operating in over 15 countries worldwide.\n",
-     "Yandex Taxi offers various ride options, including economy, comfort, and business class, catering to a wide range of customer needs.\n",
-     "Yandex Taxi drivers use a special app that helps them navigate efficiently, optimizing routes and reducing waiting times for passengers.\n"
+    map<int, string> didYouKnow = {
+       {0, "Yandex Taxi is one of the leading ride-hailing services in Russia, operating in over 15 countries worldwide.\n"},
+       {1, "Yandex Taxi offers various ride options, including economy, comfort, and business class, catering to a wide range of customer needs.\n"},
+       {2, "Yandex Taxi drivers use a special app that helps them navigate efficiently, optimizing routes and reducing waiting times for passengers.\n"}
     };
 
     srand(time(0));
