@@ -29,9 +29,9 @@ void WaitOrCancel() {
     srand(time(0));
     int randomIndex = rand() % 3;
     cout << didYouKnow[randomIndex] << endl;
-    int counter = 20;
+    int counter = 10;
     char userInput = ' ';
-    cout << "Time remaining for the taxi to arrive:  ";
+    cout << "Time remaining for the taxi to arrive:  \n";
     do {
         cout << counter << " s" << endl;
         Sleep(1000);  

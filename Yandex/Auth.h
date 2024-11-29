@@ -13,6 +13,8 @@ struct Auth {
     int age;
 
     Auth(string n, string e, string p, int a);
+
+    void DisplayProfile() const;
 };
 
 #endif

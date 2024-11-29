@@ -1,6 +1,7 @@
 #include "Auth.h"
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 Auth::Auth(string n, string e, string p, int a)
     : name{ n }, email{ e }, password{ p }, age{ a } {
@@ -16,4 +17,12 @@ Auth::Auth(string n, string e, string p, int a)
     }
 
     cout << "\nWelcome to Yandex Taxi! \n" << endl;
+}
+
+void Auth::DisplayProfile() const {
+    
+    cout << left << setw(15) << "Name:" << name << endl;
+    cout << left << setw(15) << "Email:" << email << endl;
+    cout << left << setw(15) << "Password:" << "******" << endl;
+    cout << left << setw(15) << "Age:" << age << endl;
 }
