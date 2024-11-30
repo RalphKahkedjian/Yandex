@@ -1,5 +1,6 @@
 #include "Auth.h"
 #include "Taxis.h"
+#include "History.h"
 #include <iostream>
 #include <set>
 #include <string>
@@ -25,7 +26,7 @@ void printHeader() {
 
 void ValidatingUser() {
     cout << "\nPlease be patient...\n";
-    cout << "Did you know Yandex Taxi is global? Yes, we are located in Armenia, Georgia, Russia, Kazakhstan...\nVisit Our Website for more.\n";
+    cout << "Did you know Yandex Taxi is global? Yes, we are located in Armenia, Georgia, Russia, Kazakhstan...\nVisit Our Website to know more about Yandex Taxi Service.\n";
     Sleep(5000);
     isLoading = true;
 }
@@ -36,6 +37,8 @@ int main() {
     int age;
     int locationChoice;
     char userChoice;
+    string location;
+    History bookingHistory;
 
     printHeader();
 
@@ -61,16 +64,17 @@ int main() {
         Sleep(1500);
         system("cls");
 
-
         do {
             cout << "\n1. Book a ride \n";
-            cout << "2. View Profile\n"; 
+            cout << "2. View Profile\n";
+            cout << "3. View Booking History\n";
             cout << "Enter your choice, or any other key to exit: ";
             cin >> userChoice;
 
+            system("cls");
             switch (userChoice) {
             case '1':
-                cout << "\t\nBook A taxi\n\n";
+                cout << "\t\nBook A Taxi\n\n";
 
                 cout << "Choose a location to see available taxis:" << endl;
                 cout << "1. Armenia" << endl;
@@ -78,14 +82,23 @@ int main() {
                 cout << "3. Russia" << endl;
                 cout << "Enter your choice (1-3): ";
                 cin >> locationChoice;
+                cin.ignore();
 
                 cout << endl;
                 DisplayTaxis(locationChoice);
+
+                location = locationChoice == 1 ? "Armenia" : locationChoice == 2 ? "Georgia" : "Russia";
+                bookingHistory.AddBooking(location);
                 break;
 
-            case '2': 
+            case '2':
                 cout << "\t\nUser Profile\n\n";
                 auth.DisplayProfile();
+                break;
+
+            case '3':
+                cout << "\t\nBooking History\n\n";
+                bookingHistory.DisplayHistory();
                 break;
 
             default:
@@ -95,6 +108,7 @@ int main() {
 
             cout << "\nDo you want to continue? (y/n): ";
             cin >> userChoice;
+            system("cls");
 
         } while (userChoice == 'y' || userChoice == 'Y');
     }

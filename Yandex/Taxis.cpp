@@ -15,7 +15,7 @@ void CheckAvailability() {
 
 void WaitOrCancel() {
     char choice;
-    cout << "Do you wish to cancel the ride ? If yes, enter Q or q\n";
+    cout << "Do you wish to cancel the ride ? Enter Q for yes, and any other key if no. \n";
     cin >> choice;
     if (choice == 'q' || choice == 'Q') {
         exit(0);
@@ -29,22 +29,22 @@ void WaitOrCancel() {
     srand(time(0));
     int randomIndex = rand() % 3;
     cout << didYouKnow[randomIndex] << endl;
-    int counter = 10;
     char userInput = ' ';
     cout << "Time remaining for the taxi to arrive:  \n";
-    do {
-        cout << counter << " s" << endl;
-        Sleep(1000);  
-        counter--;
-    } while (counter > 0);  
+ 
+    cout << "Waiting for the taxi to arrive..." << endl;
+    Sleep(1000);  
+
 
     cout << "Taxi has arrived!\n";
     int price = 10 + rand() % 30;
     int pay;
     cout << "Pay " << price << " €\n";
+    cout << "Paying: ";
     cin >> pay;
     if (pay > price * 2) {
-        cout << "\nWow! Thank you for your huge tips. Enjoy your day\n";
+        int change = price - pay;
+        cout << "\nThank you and " <<  change << "€ is for you. "<< "Enjoy your day\n";
     }
     else if (pay > price) {
         cout << "\nThank you for riding with us and for your additional tips!\n";
@@ -100,13 +100,13 @@ void DisplayTaxis(int choice) {
     for (const auto& taxi : taxis) {
         if (taxi.id == id) {
             isIdFound = true;
-            int random = 1 + rand() % 2;
+            int random = 1 + rand() % 3;
             CheckAvailability();
-            if (random == 1) {
+            if (random == 1 || random == 2) {
                 cout << "Taxi with ID " << id << " is free for booking." << endl;
                 WaitOrCancel();
             }
-            else if (random == 2) {
+            else{
                 cout << "Taxi with ID " << id << " is busy in a ride." << endl;
             }
             break;
