@@ -2,14 +2,14 @@
 #define HISTORY_H
 
 #include <iostream>
-#include <stack>
+#include <queue>
 #include <string>
 
 using namespace std;
 
 class History {
 private:
-    stack<string> bookingHistory;
+    queue<string> bookingHistory;
 
     // used the same knowledge that we used in class
     string GetTimestamp() const {
@@ -27,9 +27,10 @@ private:
 
 public:
 
-    void AddBooking(const std::string& booking);
+    void AddBooking(const string& booking);
     void DisplayHistory();
-    bool IsEmpty() const;
 };
+
+extern History BookingHistory;
 
 #endif 

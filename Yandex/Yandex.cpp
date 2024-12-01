@@ -38,7 +38,6 @@ int main() {
     int locationChoice;
     char userChoice;
     string location;
-    History bookingHistory;
 
     printHeader();
 
@@ -86,9 +85,6 @@ int main() {
 
                 cout << endl;
                 DisplayTaxis(locationChoice);
-
-                location = locationChoice == 1 ? "Armenia" : locationChoice == 2 ? "Georgia" : "Russia";
-                bookingHistory.AddBooking(location);
                 break;
 
             case '2':
@@ -98,7 +94,7 @@ int main() {
 
             case '3':
                 cout << "\t\nBooking History\n\n";
-                bookingHistory.DisplayHistory();
+                BookingHistory.DisplayHistory();
                 break;
 
             default:

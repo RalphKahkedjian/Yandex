@@ -1,37 +1,27 @@
 #include "History.h"
+#include <iostream>
 #include <Windows.h>
-
 using namespace std;
 
-void FetchHistory() {
-    cout << "Fetching Your Booked Taxis\n";
-    Sleep(1500);
-    system("cls");
-}
+History BookingHistory;
 
 void History::AddBooking(const string& booking) {
-    string timestamp = GetTimestamp();
-    bookingHistory.push(booking + " | Booked at: " + timestamp);
+    bookingHistory.push(GetTimestamp() + booking);
 }
 
 void History::DisplayHistory() {
-    int count = 1;
-    FetchHistory();
+    cout << "Fetching Your Booked Taxis History...\n";
+    Sleep(1200);
+
     if (bookingHistory.empty()) {
-        cout << "\nNo bookings have been made yet.\n";
+        cout << "No booking history available.\n";
+        return;
     }
-    else {
-        cout << "\nBooking History\n";
-        stack<string> history = bookingHistory;
 
-        while (!history.empty()) {
-            cout << count << " - " << history.top() << endl;
-            history.pop();
-            count++;
-        }
+    queue<string> history = bookingHistory;
+    cout << "\nBooking History:\n";
+    while (!history.empty()) {
+        cout << "- " << history.front() << endl;
+        history.pop();
     }
-}
-
-bool History::IsEmpty() const {
-    return bookingHistory.empty();
 }
