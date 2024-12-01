@@ -1,6 +1,7 @@
 #include "Auth.h"
 #include "Taxis.h"
 #include "History.h"
+#include "Feedback.h"
 #include <iostream>
 #include <set>
 #include <string>
@@ -10,6 +11,7 @@ using namespace std;
 
 bool isLoading = false;
 
+// Function for printing asterisks to design the navbar
 void printHeader() {
     string border = "*************************************";
     string title = "Yandex Taxi";
@@ -24,11 +26,13 @@ void printHeader() {
     cout << border << endl;
 }
 
+// Function to Validate User Authentication
 void ValidatingUser() {
     cout << "\nPlease be patient...\n";
     cout << "Did you know Yandex Taxi is global? Yes, we are located in Armenia, Georgia, Russia, Kazakhstan...\nVisit Our Website to know more about Yandex Taxi Service.\n";
     Sleep(5000);
     isLoading = true;
+    system("cls");
 }
 
 int main() {
@@ -58,15 +62,17 @@ int main() {
 
     ValidatingUser();
 
-    if (isLoading) {
-        Auth auth(name, email, password, age);
-        Sleep(1500);
-        system("cls");
+    if (isLoading) {                                // If Validation went right then enter the if condition
+        Auth auth(name, email, password, age);      // Calling the constructor
+        FeedbackSystem feedbackSystem;             // Create an instance of FeedbackSystem
+        Sleep(1500);                                // Set a timeout
+        system("cls");                              // Clearing the terminal
 
         do {
             cout << "\n1. Book a ride \n";
             cout << "2. View Profile\n";
             cout << "3. View Booking History\n";
+            cout << "4. Provide Feedback\n";        // Added feedback option
             cout << "Enter your choice, or any other key to exit: ";
             cin >> userChoice;
 
@@ -97,6 +103,16 @@ int main() {
                 BookingHistory.DisplayHistory();
                 break;
 
+            case '4': {
+                cout << "\t\nProvide Feedback\n\n";
+                string comment;
+                cin.ignore(); // Clear the input buffer
+                cout << "Enter your feedback: ";
+                getline(cin, comment);
+                feedbackSystem.AddFeedback(comment);
+                break;
+            }
+
             default:
                 cout << "Exiting the application.\n";
                 return 0;
@@ -107,6 +123,7 @@ int main() {
             system("cls");
 
         } while (userChoice == 'y' || userChoice == 'Y');
+
     }
     else {
         cout << "An error occurred due to maintenance. Please try again later." << endl;

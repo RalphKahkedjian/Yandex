@@ -60,7 +60,7 @@ void WaitOrCancel() {
     char userInput = ' ';
  
     cout << "Waiting for the taxi to arrive..." << endl;
-    Sleep(1500);
+    Sleep(2000);
     system("cls");
 
     cout << "Taxi has arrived!\n";
@@ -70,7 +70,7 @@ void WaitOrCancel() {
     cout << "Paying: ";
     cin >> pay;
 
-    cout << "Driver checking the payment\n";
+    cout << "Driver checking the payment...\n";
     Sleep(1000);
 
     if (pay > price * 2) {                  // if the user paid double the price, the drivr will return the remaining change
@@ -84,7 +84,7 @@ void WaitOrCancel() {
         cout << "\nThank you for riding with us, Enjoy your day!\n";
     }
     else {
-        cout << "See you in jail\n";
+        cout << "\nSee you in jail\n";
     }
 }
 
@@ -94,7 +94,7 @@ void DisplayTaxis(int choice) {
         return;
     }
 
-    // The following will be filled based on which location the user choosed and which booking id
+    // The following will be filled based on which location the user chose and which booking id
     vector<Taxi> taxis = taxiData[choice];
     for (const auto& taxi : taxis) {
         cout << "From: " << taxi.fcity << " to: " << taxi.tcity << endl;

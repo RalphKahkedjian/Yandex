@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+// Basic struct declaring attributes and a constructor
+
 struct Taxi {
     string fcity;
     string tcity;

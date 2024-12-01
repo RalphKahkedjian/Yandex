@@ -9,6 +9,8 @@ using namespace std;
 
 class History {
 private:
+
+    // Declaring a queue
     queue<string> bookingHistory;
 
     // used the same knowledge that we used in class
@@ -30,6 +32,8 @@ public:
     void AddBooking(const string& booking);
     void DisplayHistory();
 };
+
+// It will be used in the two files (taxis.cpp and the yandex.cpp), so we decided to use the extern.
 
 extern History BookingHistory;
 
