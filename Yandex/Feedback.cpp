@@ -10,5 +10,6 @@ void FeedbackSystem::AddFeedback(const string& comment) {
     Feedback newFeedback(comment);
     feedbackStack.push(newFeedback);
 
+    Sleep(1000);
     cout << "Thank you for your feedback! We'll Get Back To You Soon\n";
 }
