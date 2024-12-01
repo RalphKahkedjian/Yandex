@@ -5,9 +5,12 @@ using namespace std;
 
 History BookingHistory;
 
+// Pushing the Time which is declared in the header file + the booking
 void History::AddBooking(const string& booking) {
     bookingHistory.push(GetTimestamp() + booking);
 }
+
+// Function to Fetch history if empty or not ( to make it more realistic )
 
 void History::DisplayHistory() {
     cout << "Fetching Your Booked Taxis History...\n";
@@ -20,7 +23,7 @@ void History::DisplayHistory() {
 
     queue<string> history = bookingHistory;
     cout << "\nBooking History:\n";
-    while (!history.empty()) {
+    while (!history.empty()) {                      // If Queue not empty, then display
         cout << "- " << history.front() << endl;
         history.pop();
     }

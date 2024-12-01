@@ -14,6 +14,7 @@ struct Auth {
 
     Auth(string n, string e, string p, int a);
 
+    // To saved user info 
     void DisplayProfile() const;
 };
 

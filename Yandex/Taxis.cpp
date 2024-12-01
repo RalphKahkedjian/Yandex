@@ -10,6 +10,7 @@
 
 using namespace std;
 
+// Map where it has int key, and the value vector (calling the constructor in the taxi header file) which has the taxi data
 map<int, vector<Taxi>> taxiData = {
     {1, {
         Taxi("Yerevan", "Dilijan", 500.00, "Tigran", 101),
@@ -29,10 +30,14 @@ map<int, vector<Taxi>> taxiData = {
     }}
 };
 
+// Function to check if Taxi is available or not and added a timeout
+
 void CheckAvailability() {
     cout << "Checking If Available...\n";
     Sleep(2000);
 }
+
+// Function where the user would either wait for the taxi, or he/she could cancel it before arriving
 
 void WaitOrCancel() {
     char choice;
@@ -41,6 +46,8 @@ void WaitOrCancel() {
     if (choice == 'q' || choice == 'Q') {
         exit(0);
     }
+
+    // For fun, we added DYK using map while the user is waiting for the taxi, By generating random value below, it will choose 1/3 following statements.
     map<int, string> didYouKnow = {
        {0, "Yandex Taxi is one of the leading ride-hailing services in Russia, operating in over 15 countries worldwide.\n"},
        {1, "Yandex Taxi offers various ride options, including economy, comfort, and business class, catering to a wide range of customer needs.\n"},
@@ -57,7 +64,7 @@ void WaitOrCancel() {
     system("cls");
 
     cout << "Taxi has arrived!\n";
-    int price = 10 + rand() % 30;
+    int price = 10 + rand() % 30;           // Price will be between 10 and 30 euros
     int pay;
     cout << "Pay " << price << " €\n";
     cout << "Paying: ";
@@ -66,11 +73,11 @@ void WaitOrCancel() {
     cout << "Driver checking the payment\n";
     Sleep(1000);
 
-    if (pay > price * 2) {
+    if (pay > price * 2) {                  // if the user paid double the price, the drivr will return the remaining change
         int change = pay - price;
         cout << "\nThank you and " << change << "€ is for you. " << "Enjoy your day\n";
     }
-    else if (pay > price) {
+    else if (pay > price) {                // if it's not the double, assume that the user paid extra tips
         cout << "\nThank you for riding with us and for your additional tips!\n";
     }
     else if (pay == price) {
@@ -87,6 +94,7 @@ void DisplayTaxis(int choice) {
         return;
     }
 
+    // The following will be filled based on which location the user choosed and which booking id
     vector<Taxi> taxis = taxiData[choice];
     for (const auto& taxi : taxis) {
         cout << "From: " << taxi.fcity << " to: " << taxi.tcity << endl;
@@ -97,18 +105,23 @@ void DisplayTaxis(int choice) {
         cout << endl;
     }
 
+    // The user should enter a specific booking ID based on the output so he/she can book
     int id;
     cout << "Enter the booking ID you want to order: \n";
     cin >> id;
 
     bool isIdFound = false;
 
+    // Foreach taxi in taxis
     for (const auto& taxi : taxis) {
         if (taxi.id == id) {
             isIdFound = true;
+
+            // Created a random number generator from 1 to 3, if random = 1 | 2, then the driver is available, else if 3 then busy ( to make it more realistic only  
+
             int random = 1 + rand() % 3;
             CheckAvailability();
-            if (random == 1 || random == 2) {
+            if (random == 1 || random == 2) {           
                 cout << "Taxi with ID " << id << " is free for booking." << endl;
                 WaitOrCancel();
                 BookingHistory.AddBooking("| Booking ID: " + to_string(id) +
@@ -123,6 +136,8 @@ void DisplayTaxis(int choice) {
             break;
         }
     }
+
+    // If user entered an ID not found in the taxiData
 
     if (!isIdFound) {
         cout << "No such taxi ID found.\n";
