@@ -38,3 +38,7 @@ public:
 extern History BookingHistory;
 
 #endif 
+
+// Time Complexity: O(1) for adding a booking to the queue
+// Time Complexity: O(n) for displaying booking history where n is the number of bookings in the queue
+
